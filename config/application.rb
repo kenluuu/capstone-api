@@ -1,8 +1,5 @@
 require_relative 'boot'
-config.action_dispatch.default_headers = {
-    'Access-Control-Allow-Origin' => 'http://my-web-service-consumer-site.com',
-    'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
-  }
+
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
@@ -14,5 +11,12 @@ module CapstoneDatabase
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+  end
+end
+
+config.middleware.insert_before 0, "Rack::Cors" do
+  allow do
+    origins '*'
+    resource '*', :headers => :any, :methods => [:get, :post, :options]
   end
 end
