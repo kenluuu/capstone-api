@@ -1,5 +1,8 @@
 require_relative 'boot'
-
+config.action_dispatch.default_headers = {
+    'Access-Control-Allow-Origin' => 'http://my-web-service-consumer-site.com',
+    'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
+  }
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
