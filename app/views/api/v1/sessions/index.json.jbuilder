@@ -1,1 +1,0 @@
-json.partial! 'session.json.jbuilder', user: @user
